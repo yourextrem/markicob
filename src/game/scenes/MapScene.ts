@@ -148,7 +148,7 @@ export class MapScene extends Scene {
 
         // Extract polygon objects with collides: true
         const polygons = collisionObjectLayer.objects.filter(obj => {
-            return obj.polygon && obj.properties?.some((p: any) => p.name === 'collides' && p.value === true);
+            return obj.polygon && obj.properties?.some((p: { name: string; value: boolean }) => p.name === 'collides' && p.value === true);
         });
 
         console.log(`Found ${polygons.length} collision polygons`);
@@ -189,7 +189,7 @@ export class MapScene extends Scene {
                         collisionRect.setVisible(false); // Hide collision rectangles by default
                         this.physics.add.existing(collisionRect, true);
                         collisionRects.push(collisionRect);
-                        this.collisionObjects.push(collisionRect as any);
+                        this.collisionObjects.push(collisionRect);
                     }
                 }
             }
@@ -229,7 +229,7 @@ export class MapScene extends Scene {
             });
             textLabel.setOrigin(0.5);
             textLabel.setVisible(false); // Hide text label by default
-            this.debugGraphics.push(textLabel as any);
+            this.debugGraphics.push(textLabel);
 
             console.log(`Created ${collisionRects.length} collision rectangles for polygon at (${obj.x}, ${obj.y})`);
         });
@@ -247,11 +247,11 @@ export class MapScene extends Scene {
         return inside;
     }
 
-    private createPolygonCollision(obj: Phaser.Types.Tilemaps.TiledObject) {
+    private createPolygonCollision(_obj: Phaser.Types.Tilemaps.TiledObject) {
         // This method is no longer needed as we handle everything in createCollisionObjects
     }
 
-    private createRectangleCollision(obj: Phaser.Types.Tilemaps.TiledObject) {
+    private createRectangleCollision(_obj: Phaser.Types.Tilemaps.TiledObject) {
         // This method is no longer needed as we handle everything in createCollisionObjects
     }
 
@@ -541,7 +541,7 @@ export class MapScene extends Scene {
         // });
 
         // Handle resize
-        this.scale.on('resize', (gameSize: any) => {
+        this.scale.on('resize', (gameSize: { width: number; height: number }) => {
             this.cameras.main.setViewport(0, 0, gameSize.width, gameSize.height);
         });
     }
@@ -669,10 +669,10 @@ export class MapScene extends Scene {
         }
 
                // Update depth sorting for animated objects with special handling for obelisk tower
-       this.depthSortedObjects.getChildren().forEach((sprite: any) => {
-                       // Special handling for obelisk tower (70/30 split with transparency)
-            if (sprite.texture && sprite.texture.key && sprite.texture.key.startsWith('obelisk_tower')) {
-                const obeliskVisualY = 749.667; // Visual position from JSON
+              this.depthSortedObjects.getChildren().forEach((sprite: Phaser.GameObjects.GameObject) => {
+            // Special handling for obelisk tower (70/30 split with transparency)
+            if (sprite instanceof Phaser.GameObjects.Sprite && sprite.texture && sprite.texture.key && sprite.texture.key.startsWith('obelisk_tower')) {
+                // const obeliskVisualY = 749.667; // Visual position from JSON - unused variable
                 const obeliskPhysicsY = 500; // Physics position (moved down)
                 const obeliskHeight = 256;
                 const playerY = this.player ? this.player.y : 0;
@@ -695,7 +695,7 @@ export class MapScene extends Scene {
                 // console.log(`Obelisk depth: ${sprite.depth}, Player Y: ${playerY}, Split point: ${splitPoint} (physics Y: ${obeliskPhysicsY})`);
             }
             // Special handling for stone_sector objects (always in front, transparent when player inside bounding box)
-            else if (sprite.texture && sprite.texture.key && sprite.texture.key.startsWith('stone_sector')) {
+            else if (sprite instanceof Phaser.GameObjects.Sprite && sprite.texture && sprite.texture.key && sprite.texture.key.startsWith('stone_sector')) {
                 const stoneSectorX = sprite.x;
                 const stoneSectorY = sprite.y;
                 const stoneSectorWidth = 259; // Actual width from JSON data
@@ -723,8 +723,8 @@ export class MapScene extends Scene {
                     // Player is outside the stone_sector bounding box - full opacity
                     sprite.setAlpha(1.0); // Full opacity when player outside box
                 }
-            } else {
-                // Regular depth sorting for other objects
+            } else if (sprite instanceof Phaser.GameObjects.Sprite) {
+                // Regular depth sorting for other sprite objects
                 const depthLine = Math.floor(sprite.y / 32);
                 sprite.depth = depthLine;
             }

@@ -44,7 +44,7 @@ export class PreloaderScene extends Scene {
         });
 
         // Loading error handling
-        this.load.on('loaderror', (fileObj: any) => {
+        this.load.on('loaderror', (fileObj: { key: string; src: string }) => {
             console.error('Error loading asset:', fileObj.key, fileObj.src);
         });
 

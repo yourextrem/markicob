@@ -1,6 +1,8 @@
 import { Types } from 'phaser';
 import { PreloaderScene } from '../scenes/PreloaderScene';
 import { MapScene } from '../scenes/MapScene';
+import { PlayerTestScene } from '../scenes/PlayerTestScene';
+import { MainScene } from '../scenes/MainScene';
 
 export const GameConfig: Types.Core.GameConfig = {
     type: Phaser.AUTO,
