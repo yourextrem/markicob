@@ -1,0 +1,56 @@
+{
+  "name": "phaser-3-obelisk-game",
+  "version": "1.0.0",
+  "description": "A 2D game built with Phaser 3, Next.js, and TypeScript featuring an interactive obelisk lobby environment",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next out dist",
+    "deploy": "npm run build && npm run start"
+  },
+  "keywords": [
+    "phaser",
+    "phaser3",
+    "game",
+    "nextjs",
+    "typescript",
+    "2d-game",
+    "tilemap",
+    "obelisk"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourextrem/markicob.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourextrem/markicob/issues"
+  },
+  "homepage": "https://github.com/yourextrem/markicob#readme",
+  "dependencies": {
+    "next": "15.4.6",
+    "phaser": "^3.90.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+}
