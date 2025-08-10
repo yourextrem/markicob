@@ -133,7 +133,7 @@ export class MapScene extends Scene {
             console.error('Failed to create collision layer');
         }
 
-        // Create collision objects from collision_object layer
+        // Create collision objects from collision layer
         this.createCollisionObjects();
     }
 
@@ -142,7 +142,7 @@ export class MapScene extends Scene {
         const collisionObjectLayer = this.map.getObjectLayer('collision');
         
         if (!collisionObjectLayer) {
-            console.log('No collision_object layer found');
+            console.log('No collision layer found');
             return;
         }
 
