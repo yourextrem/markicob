@@ -5,7 +5,7 @@ export class MapScene extends Scene {
     private map!: Phaser.Tilemaps.Tilemap;
     private tileset!: Phaser.Tilemaps.Tileset;
     private backgroundLayer!: Phaser.Tilemaps.TilemapLayer;
-    private collisionLayer!: Phaser.Tilemaps.TilemapLayer;
+    // Collision is handled by object layer, not tile layer
     private player!: Player;
     private waterfall!: Phaser.GameObjects.Sprite;
     private animatedObjects!: Phaser.GameObjects.Group;
@@ -118,20 +118,8 @@ export class MapScene extends Scene {
             return;
         }
 
-        // Create collision layer
-        this.collisionLayer = this.map.createLayer('collision', this.tileset)!;
-        if (this.collisionLayer) {
-            // Set collision by tile index. The '2' corresponds to the tile ID in Tiled.
-            this.collisionLayer.setCollision(2);
-            this.collisionLayer.setVisible(false); // Make the collision layer invisible by default
-            this.collisionLayer.setDepth(1);
-            
-            // Remove debug visualization for tile-based collisions
-            // this.collisionLayer.setTint(0xff0000); // Red tint for collision tiles
-            // this.collisionLayer.setAlpha(0.5); // Semi-transparent
-        } else {
-            console.error('Failed to create collision layer');
-        }
+        // Note: Collision is handled by object layer, not tile layer
+        // The collision layer in the map is an object layer with polygon collision objects
 
         // Create collision objects from collision layer
         this.createCollisionObjects();
