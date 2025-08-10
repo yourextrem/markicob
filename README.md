@@ -4,7 +4,7 @@ A 2D game built with Phaser 3, Next.js, and TypeScript featuring an interactive 
 
 ## 🚀 Live Demo
 
-[Coming soon - will be deployed to Vercel]
+**🎮 Play Now:** [https://markicob-erzc-3esf2zes0-amir-safs-projects.vercel.app](https://markicob-erzc-3esf2zes0-amir-safs-projects.vercel.app)
 
 **Repository:** [https://github.com/yourextrem/markicob](https://github.com/yourextrem/markicob)
 
