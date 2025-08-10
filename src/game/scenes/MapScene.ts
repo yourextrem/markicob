@@ -138,8 +138,8 @@ export class MapScene extends Scene {
     }
 
     private createCollisionObjects() {
-        // Get the collision_object layer
-        const collisionObjectLayer = this.map.getObjectLayer('collision_object');
+        // Get the collision layer
+        const collisionObjectLayer = this.map.getObjectLayer('collision');
         
         if (!collisionObjectLayer) {
             console.log('No collision_object layer found');
